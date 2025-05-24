@@ -1,23 +1,26 @@
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
+// Menu Mobile
+document.getElementById('menuButton').addEventListener('click', function() {
+  document.getElementById('sidebar').style.display = 'block';
+});
 
-// Toggle between showing and hiding the sidebar when clicking the menu icon
-var mySidebar = document.getElementById("mySidebar");
+document.getElementById('closeMenu').addEventListener('click', function() {
+  document.getElementById('sidebar').style.display = 'none';
+});
 
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-  } else {
-    mySidebar.style.display = 'block';
-  }
-}
+// Fechar menu ao clicar em links
+document.querySelectorAll('#sidebar a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('sidebar').style.display = 'none';
+  });
+});
 
-// Close the sidebar with the close button
-function w3_close() {
-    mySidebar.style.display = "none";
+// Smooth Scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
 }
