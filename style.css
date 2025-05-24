@@ -45,9 +45,13 @@ body, html {
 }
 
 /* Botão de Tema */
-.theme-btn {
+.theme-btn-container {
   position: absolute;
-  left: 120px;
+  left: 200px;
+  top: 0;
+}
+
+.theme-btn {
   font-size: 1.5em;
   background: none !important;
   padding: 8px 16px !important;
@@ -93,20 +97,23 @@ body, html {
 /* Painel de Acessibilidade */
 .accessibility-panel {
   position: fixed;
-  right: -350px;
+  right: 20px;
   bottom: 90px;
   width: 300px;
+  max-height: 60vh;
+  overflow-y: auto;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   z-index: 1000;
-  transition: right 0.3s;
   padding: 15px;
   color: #333;
+  transform: translateX(120%);
+  transition: transform 0.3s;
 }
 
 .accessibility-panel.active {
-  right: 20px;
+  transform: translateX(0);
 }
 
 .accessibility-header {
@@ -116,6 +123,10 @@ body, html {
   margin-bottom: 15px;
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
 }
 
 .close-panel {
@@ -149,6 +160,13 @@ body, html {
 .high-contrast .w3-green {
   background-color: yellow !important;
   color: black !important;
+}
+
+.high-contrast .w3-light-grey,
+.high-contrast .w3-light-grey h3,
+.high-contrast .w3-light-grey li {
+  color: yellow !important;
+  background-color: black !important;
 }
 
 .large-text {
@@ -197,6 +215,7 @@ body.light-mode {
 
 .light-mode .w3-green {
   background-color: #4CAF50 !important;
+  color: white !important;
 }
 
 .light-mode .hero-bg {
@@ -207,15 +226,25 @@ body.light-mode {
   background-color: #f9f9f9;
 }
 
+/* Texto claro em fundos escuros */
+.w3-green,
+.w3-black {
+  color: white !important;
+}
+
+.w3-green .fa,
+.w3-black .fa {
+  color: white !important;
+}
+
 /* Responsividade */
 @media (max-width: 600px) {
   .hero-text {
     padding: 0 20px;
   }
   
-  .theme-btn {
-    left: 100px;
-    font-size: 1.3em;
+  .theme-btn-container {
+    left: 150px;
   }
   
   .w3-quarter, .w3-col {
@@ -225,6 +254,7 @@ body.light-mode {
   
   .accessibility-panel {
     width: 280px;
+    right: 10px;
     bottom: 80px;
   }
 }
@@ -242,6 +272,11 @@ body.light-mode {
 /* Melhorias de acessibilidade */
 [aria-hidden="true"] {
   pointer-events: none;
+}
+
+:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
 }
 
 :focus {
