@@ -147,6 +147,31 @@ body, html {
   color: #0066cc;
 }
 
+/* Classes para tamanho de fonte */
+.font-smaller {
+  font-size: 0.8em !important;
+}
+
+.font-small {
+  font-size: 0.9em !important;
+}
+
+.font-normal {
+  font-size: 1em !important;
+}
+
+.font-large {
+  font-size: 1.2em !important;
+}
+
+.font-larger {
+  font-size: 1.4em !important;
+}
+
+.font-largest {
+  font-size: 1.6em !important;
+}
+
 /* Classes para acessibilidade */
 .high-contrast {
   background-color: black !important;
@@ -160,21 +185,6 @@ body, html {
 .high-contrast .w3-green {
   background-color: yellow !important;
   color: black !important;
-}
-
-.high-contrast .w3-light-grey,
-.high-contrast .w3-light-grey h3,
-.high-contrast .w3-light-grey li {
-  color: yellow !important;
-  background-color: black !important;
-}
-
-.large-text {
-  font-size: 1.2em !important;
-}
-
-.larger-text {
-  font-size: 1.4em !important;
 }
 
 .highlight-links a {
@@ -198,6 +208,16 @@ body, html {
   overflow-x: hidden;
 }
 
+/* Texto em fundos escuros */
+.w3-light-grey,
+.w3-light-grey .section-title,
+.w3-light-grey h2,
+.w3-light-grey h3,
+.w3-light-grey p,
+.w3-light-grey li {
+  color: white !important;
+}
+
 /* Modo Claro */
 body.light-mode {
   background-color: white;
@@ -211,6 +231,14 @@ body.light-mode {
 
 .light-mode .w3-light-grey {
   background-color: #f1f1f1 !important;
+}
+
+.light-mode .w3-light-grey .section-title,
+.light-mode .w3-light-grey h2,
+.light-mode .w3-light-grey h3,
+.light-mode .w3-light-grey p,
+.light-mode .w3-light-grey li {
+  color: black !important;
 }
 
 .light-mode .w3-green {
@@ -272,11 +300,6 @@ body.light-mode {
 /* Melhorias de acessibilidade */
 [aria-hidden="true"] {
   pointer-events: none;
-}
-
-:focus {
-  outline: 2px solid #0066cc;
-  outline-offset: 2px;
 }
 
 :focus {
