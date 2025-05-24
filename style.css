@@ -6,6 +6,7 @@ body, html {
   background-color: #121212;
   color: #e0e0e0;
   transition: background 0.3s, color 0.3s;
+  font-size: 16px;
 }
 
 /* Hero Section */
@@ -33,7 +34,7 @@ body, html {
 }
 
 .w3-green {
-  background-color: #4a1d96 !important; /* Roxo escuro */
+  background-color: #4a1d96 !important;
   color: white !important;
   transition: background 0.3s;
 }
@@ -53,14 +54,133 @@ body, html {
   cursor: pointer;
   border: none;
   outline: none;
+  transition: transform 0.2s;
 }
 
 .theme-btn:hover {
   transform: scale(1.1);
-  transition: transform 0.2s;
 }
 
-/* Modo Claro - Sobrescreve quando ativado */
+/* Botão de Acessibilidade */
+.accessibility-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: #0066cc;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: all 0.3s;
+  border: none;
+}
+
+.accessibility-btn:hover {
+  transform: scale(1.1);
+  background-color: #0052a3;
+}
+
+.libras-icon {
+  font-size: 30px;
+}
+
+/* Painel de Acessibilidade */
+.accessibility-panel {
+  position: fixed;
+  right: -350px;
+  bottom: 90px;
+  width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: right 0.3s;
+  padding: 15px;
+  color: #333;
+}
+
+.accessibility-panel.active {
+  right: 20px;
+}
+
+.accessibility-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.close-panel {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.option-group {
+  margin-bottom: 15px;
+}
+
+.option-group h4 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #0066cc;
+}
+
+/* Classes para acessibilidade */
+.high-contrast {
+  background-color: black !important;
+  color: yellow !important;
+}
+
+.high-contrast a {
+  color: cyan !important;
+}
+
+.high-contrast .w3-green {
+  background-color: yellow !important;
+  color: black !important;
+}
+
+.large-text {
+  font-size: 1.2em !important;
+}
+
+.larger-text {
+  font-size: 1.4em !important;
+}
+
+.highlight-links a {
+  background-color: yellow;
+  color: black !important;
+  padding: 2px 4px;
+  text-decoration: underline !important;
+}
+
+.zoomed-page {
+  transform: scale(1.1);
+  transform-origin: top left;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.double-zoomed {
+  transform: scale(1.2);
+  transform-origin: top left;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Modo Claro */
 body.light-mode {
   background-color: white;
   color: black;
@@ -76,21 +196,15 @@ body.light-mode {
 }
 
 .light-mode .w3-green {
-  background-color: #4CAF50 !important; /* Verde */
+  background-color: #4CAF50 !important;
 }
 
 .light-mode .hero-bg {
   filter: grayscale(30%);
 }
 
-/* Efeitos de transição para imagens */
-.w3-image {
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.w3-image:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+.light-mode .accessibility-panel {
+  background-color: #f9f9f9;
 }
 
 /* Responsividade */
@@ -98,6 +212,7 @@ body.light-mode {
   .hero-text {
     padding: 0 20px;
   }
+  
   .theme-btn {
     left: 100px;
     font-size: 1.3em;
@@ -107,4 +222,29 @@ body.light-mode {
     width: 100%;
     margin-bottom: 20px;
   }
+  
+  .accessibility-panel {
+    width: 280px;
+    bottom: 80px;
+  }
+}
+
+/* Efeitos de imagem */
+.w3-image {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.w3-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Melhorias de acessibilidade */
+[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
 }
