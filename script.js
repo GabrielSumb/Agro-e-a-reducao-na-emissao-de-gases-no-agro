@@ -10,6 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Inicializa acessibilidade
   initAccessibility();
+  
+  // Atalho de teclado Alt+A para acessibilidade
+  document.addEventListener('keydown', function(e) {
+    if (e.altKey && e.key.toLowerCase() === 'a') {
+      document.getElementById('accessibilityPanel').classList.toggle('active');
+    }
+  });
 });
 
 function toggleTheme() {
@@ -94,32 +101,6 @@ function initAccessibility() {
     localStorage.setItem('contrast', 'normal');
   });
 
-  // Controles de zoom
-  document.getElementById('zoomIn').addEventListener('click', () => {
-    if (!document.body.classList.contains('zoomed-page')) {
-      document.body.classList.add('zoomed-page');
-      localStorage.setItem('zoom', 'zoomed');
-    } else {
-      document.body.classList.replace('zoomed-page', 'double-zoomed');
-      localStorage.setItem('zoom', 'double-zoomed');
-    }
-  });
-
-  document.getElementById('zoomOut').addEventListener('click', () => {
-    if (document.body.classList.contains('double-zoomed')) {
-      document.body.classList.replace('double-zoomed', 'zoomed-page');
-      localStorage.setItem('zoom', 'zoomed');
-    } else {
-      document.body.classList.remove('zoomed-page');
-      localStorage.setItem('zoom', 'normal');
-    }
-  });
-
-  document.getElementById('resetZoom').addEventListener('click', () => {
-    document.body.classList.remove('zoomed-page', 'double-zoomed');
-    localStorage.setItem('zoom', 'normal');
-  });
-
   // Destacar links
   document.getElementById('highlightLinks').addEventListener('click', () => {
     document.body.classList.toggle('highlight-links');
@@ -188,14 +169,6 @@ function loadAccessibilityPreferences() {
   // Contraste
   if (localStorage.getItem('contrast') === 'high') {
     document.body.classList.add('high-contrast');
-  }
-
-  // Zoom
-  const zoom = localStorage.getItem('zoom');
-  if (zoom === 'zoomed') {
-    document.body.classList.add('zoomed-page');
-  } else if (zoom === 'double-zoomed') {
-    document.body.classList.add('double-zoomed');
   }
 
   // Links destacados
