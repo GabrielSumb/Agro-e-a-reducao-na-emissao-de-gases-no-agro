@@ -194,18 +194,13 @@ body, html {
   text-decoration: underline !important;
 }
 
-.zoomed-page {
-  transform: scale(1.1);
-  transform-origin: top left;
-  width: 100%;
-  overflow-x: hidden;
+/* Ícones que mudam de cor com o tema */
+.light-mode .theme-icon {
+  color: black !important;
 }
 
-.double-zoomed {
-  transform: scale(1.2);
-  transform-origin: top left;
-  width: 100%;
-  overflow-x: hidden;
+.dark-mode .theme-icon {
+  color: white !important;
 }
 
 /* Texto em fundos escuros */
