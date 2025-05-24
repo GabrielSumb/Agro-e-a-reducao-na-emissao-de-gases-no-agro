@@ -172,7 +172,7 @@ body, html {
   font-size: 1.6em !important;
 }
 
-/* Classes para acessibilidade */
+/* ALTO CONTRASTE COMPLETO */
 .high-contrast,
 .high-contrast body,
 .high-contrast .w3-white,
@@ -186,45 +186,65 @@ body, html {
 .high-contrast h2,
 .high-contrast h3,
 .high-contrast h4,
+.high-contrast h5,
+.high-contrast h6,
 .high-contrast p,
+.high-contrast span,
+.high-contrast div,
 .high-contrast li,
+.high-contrast td,
+.high-contrast th,
+.high-contrast label,
+.high-contrast strong,
+.high-contrast em,
+.high-contrast i,
+.high-contrast b,
 .high-contrast .w3-opacity,
 .high-contrast .w3-ul,
 .high-contrast .w3-large,
 .high-contrast .w3-xlarge,
+.high-contrast .w3-xxlarge,
 .high-contrast .theme-icon,
-.high-contrast .fa {
-  background-color: black !important;
-  color: yellow !important;
+.high-contrast .fa,
+.high-contrast .w3-button,
+.high-contrast button,
+.high-contrast input,
+.high-contrast textarea,
+.high-contrast select {
+  background-color: #000000 !important;
+  color: #FFFF00 !important;
+  border-color: #FFFF00 !important;
 }
 
 .high-contrast a,
-.high-contrast .w3-button {
-  color: cyan !important;
+.high-contrast a:hover {
+  color: #00FFFF !important;
   text-decoration: underline !important;
 }
 
-.high-contrast .w3-green {
-  background-color: black !important;
-  border: 2px solid yellow !important;
+/* Tratamento para imagens */
+.high-contrast img {
+  filter: grayscale(100%) contrast(120%) brightness(0.7) !important;
+  opacity: 0.8 !important;
+  border: 2px dashed #FFFF00 !important;
 }
 
+/* Elementos específicos */
 .high-contrast .hero-bg {
-  filter: grayscale(100%) brightness(0.3) !important;
+  filter: grayscale(100%) brightness(0.3) contrast(150%) !important;
 }
 
 .high-contrast .accessibility-panel {
-  background-color: black !important;
-  color: yellow !important;
-  border: 2px solid yellow !important;
+  border: 3px solid #FFFF00 !important;
 }
 
-.high-contrast .option-group h4 {
-  color: yellow !important;
+.high-contrast .w3-green {
+  background-color: #000000 !important;
+  border: 3px solid #FFFF00 !important;
 }
 
-.high-contrast .close-panel {
-  color: yellow !important;
+.high-contrast .w3-button:hover {
+  background-color: #333300 !important;
 }
 /* Ícones que mudam de cor com o tema */
 .light-mode .theme-icon {
