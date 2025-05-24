@@ -1,355 +1,172 @@
-/* Estilos globais - Modo Escuro como padrão */
+/* ========== ESTILOS GERAIS ========== */
 body, html {
-  height: 100%;
-  line-height: 1.8;
-  font-family: "Raleway", sans-serif;
-  background-color: #121212;
-  color: #e0e0e0;
-  transition: background 0.3s, color 0.3s;
-  font-size: 16px;
+    height: 100%;
+    line-height: 1.8;
+    font-family: "Raleway", sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
 }
 
+/* ========== ALTO CONTRASTE ========== */
+/* Modo Escuro - Fundo Preto/Texto Amarelo */
+.dark-mode.high-contrast,
+.dark-mode.high-contrast .w3-white,
+.dark-mode.high-contrast .w3-light-grey,
+.dark-mode.high-contrast .w3-green,
+.dark-mode.high-contrast .w3-card {
+    background-color: #000000 !important;
+    color: #FFFF00 !important;
+    border-color: #FFFF00 !important;
+}
+
+.dark-mode.high-contrast a,
+.dark-mode.high-contrast .w3-button {
+    color: #00FFFF !important;
+    text-decoration: underline !important;
+}
+
+/* Modo Claro - Fundo Branco/Texto Preto */
+.light-mode.high-contrast,
+.light-mode.high-contrast .w3-white,
+.light-mode.high-contrast .w3-light-grey,
+.light-mode.high-contrast .w3-green,
+.light-mode.high-contrast .w3-card {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+.light-mode.high-contrast a,
+.light-mode.high-contrast .w3-button {
+    color: #0000FF !important;
+    text-decoration: underline !important;
+}
+
+/* Exceções para imagens */
+.high-contrast .keep-normal,
+.high-contrast .hero-bg,
+.high-contrast .hero-text {
+    background-color: transparent !important;
+    color: inherit !important;
+    filter: none !important;
+}
+
+.high-contrast img:not(.keep-normal) {
+    filter: contrast(120%) !important;
+    border: 1px solid currentColor !important;
+}
+
+/* ========== COMPONENTES ========== */
 /* Hero Section */
 .hero-bg {
-  background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef') center/cover no-repeat;
-  min-height: 100%;
-  filter: grayscale(50%) brightness(0.6);
-  transition: filter 0.5s;
+    background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef') center/cover no-repeat;
+    min-height: 100%;
+    filter: grayscale(50%) brightness(0.6);
+    transition: filter 0.5s;
 }
 
 .hero-text {
-  padding: 0 60px;
+    padding: 0 60px;
 }
 
-/* Cores Temáticas - Modo Escuro */
-.w3-white {
-  background-color: #1e1e1e !important;
-  color: #ffffff !important;
-  transition: background 0.3s, color 0.3s;
+/* Botões */
+.w3-button {
+    transition: all 0.3s;
+    margin: 4px;
 }
 
-.w3-light-grey {
-  background-color: #2d2d2d !important;
-  transition: background 0.3s;
-}
-
-.w3-green {
-  background-color: #4a1d96 !important;
-  color: white !important;
-  transition: background 0.3s;
-}
-
-.w3-card {
-  background-color: #1e1e1e !important;
-  transition: background 0.3s;
-}
-
-/* Botão de Tema */
-.theme-btn-container {
-  position: absolute;
-  left: 200px;
-  top: 0;
-}
-
-.theme-btn {
-  font-size: 1.5em;
-  background: none !important;
-  padding: 8px 16px !important;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  transition: transform 0.2s;
-}
-
-.theme-btn:hover {
-  transform: scale(1.1);
-}
-
-/* Botão de Acessibilidade */
+/* Acessibilidade */
 .accessibility-btn {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  background-color: #0066cc;
-  color: white;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: all 0.3s;
-  border: none;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #0066cc;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+    border: none;
 }
 
 .accessibility-btn:hover {
-  transform: scale(1.1);
-  background-color: #0052a3;
+    transform: scale(1.1);
+    background-color: #0052a3;
 }
 
-.libras-icon {
-  font-size: 30px;
-}
-
-/* Painel de Acessibilidade */
 .accessibility-panel {
-  position: fixed;
-  right: 20px;
-  bottom: 90px;
-  width: 300px;
-  max-height: 60vh;
-  overflow-y: auto;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  z-index: 1000;
-  padding: 15px;
-  color: #333;
-  transform: translateX(120%);
-  transition: transform 0.3s;
+    position: fixed;
+    right: 20px;
+    bottom: 90px;
+    width: 300px;
+    max-height: 60vh;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+    padding: 15px;
+    color: #333;
+    transform: translateX(120%);
+    transition: transform 0.3s;
 }
 
 .accessibility-panel.active {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
-.accessibility-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
-  position: sticky;
-  top: 0;
-  background-color: white;
-  z-index: 1;
-}
-
-.close-panel {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #333;
-}
-
-.option-group {
-  margin-bottom: 15px;
-}
-
-.option-group h4 {
-  margin-bottom: 8px;
-  font-size: 16px;
-  color: #0066cc;
-}
-
-/* Classes para tamanho de fonte */
-.font-smaller {
-  font-size: 0.8em !important;
-}
-
-.font-small {
-  font-size: 0.9em !important;
-}
-
-.font-normal {
-  font-size: 1em !important;
-}
-
-.font-large {
-  font-size: 1.2em !important;
-}
-
-.font-larger {
-  font-size: 1.4em !important;
-}
-
-.font-largest {
-  font-size: 1.6em !important;
-}
-
-/* ALTO CONTRASTE COMPLETO */
-.high-contrast,
-.high-contrast body,
-.high-contrast .w3-white,
-.high-contrast .w3-light-grey,
-.high-contrast .w3-green,
-.high-contrast .w3-card,
-.high-contrast .w3-black,
-.high-contrast .hero-text,
-.high-contrast .section-title,
-.high-contrast h1,
-.high-contrast h2,
-.high-contrast h3,
-.high-contrast h4,
-.high-contrast h5,
-.high-contrast h6,
-.high-contrast p,
-.high-contrast span,
-.high-contrast div,
-.high-contrast li,
-.high-contrast td,
-.high-contrast th,
-.high-contrast label,
-.high-contrast strong,
-.high-contrast em,
-.high-contrast i,
-.high-contrast b,
-.high-contrast .w3-opacity,
-.high-contrast .w3-ul,
-.high-contrast .w3-large,
-.high-contrast .w3-xlarge,
-.high-contrast .w3-xxlarge,
-.high-contrast .theme-icon,
-.high-contrast .fa,
-.high-contrast .w3-button,
-.high-contrast button,
-.high-contrast input,
-.high-contrast textarea,
-.high-contrast select {
-  background-color: #000000 !important;
-  color: #FFFF00 !important;
-  border-color: #FFFF00 !important;
-}
-
-.high-contrast a,
-.high-contrast a:hover {
-  color: #00FFFF !important;
-  text-decoration: underline !important;
-}
-
-/* Tratamento para imagens */
-.high-contrast img {
-  filter: grayscale(100%) contrast(120%) brightness(0.7) !important;
-  opacity: 0.8 !important;
-  border: 2px dashed #FFFF00 !important;
-}
-
-/* Elementos específicos */
-.high-contrast .hero-bg {
-  filter: grayscale(100%) brightness(0.3) contrast(150%) !important;
-}
-
-.high-contrast .accessibility-panel {
-  border: 3px solid #FFFF00 !important;
-}
-
-.high-contrast .w3-green {
-  background-color: #000000 !important;
-  border: 3px solid #FFFF00 !important;
-}
-
-.high-contrast .w3-button:hover {
-  background-color: #333300 !important;
-}
-/* Ícones que mudam de cor com o tema */
-.light-mode .theme-icon {
-  color: black !important;
-}
-
-.dark-mode .theme-icon {
-  color: white !important;
-}
-
-/* Texto em fundos escuros */
-.w3-light-grey,
-.w3-light-grey .section-title,
-.w3-light-grey h2,
-.w3-light-grey h3,
-.w3-light-grey p,
-.w3-light-grey li {
-  color: white !important;
-}
-
-/* Modo Claro */
-body.light-mode {
-  background-color: white;
-  color: black;
+/* ========== TEMA CLARO ========== */
+.light-mode {
+    background-color: white;
+    color: black;
 }
 
 .light-mode .w3-white {
-  background-color: white !important;
-  color: black !important;
+    background-color: white !important;
+    color: black !important;
 }
 
 .light-mode .w3-light-grey {
-  background-color: #f1f1f1 !important;
-}
-
-.light-mode .w3-light-grey .section-title,
-.light-mode .w3-light-grey h2,
-.light-mode .w3-light-grey h3,
-.light-mode .w3-light-grey p,
-.light-mode .w3-light-grey li {
-  color: black !important;
+    background-color: #f1f1f1 !important;
 }
 
 .light-mode .w3-green {
-  background-color: #4CAF50 !important;
-  color: white !important;
+    background-color: #4CAF50 !important;
+    color: white !important;
 }
 
 .light-mode .hero-bg {
-  filter: grayscale(30%);
+    filter: grayscale(30%);
 }
 
-.light-mode .accessibility-panel {
-  background-color: #f9f9f9;
-}
-
-/* Texto claro em fundos escuros */
-.w3-green,
-.w3-black {
-  color: white !important;
-}
-
-.w3-green .fa,
-.w3-black .fa {
-  color: white !important;
-}
-
-/* Responsividade */
+/* ========== RESPONSIVIDADE ========== */
 @media (max-width: 600px) {
-  .hero-text {
-    padding: 0 20px;
-  }
-  
-  .theme-btn-container {
-    left: 150px;
-  }
-  
-  .w3-quarter, .w3-col {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .accessibility-panel {
-    width: 280px;
-    right: 10px;
-    bottom: 80px;
-  }
-}
-
-/* Efeitos de imagem */
-.w3-image {
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.w3-image:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-/* Melhorias de acessibilidade */
-[aria-hidden="true"] {
-  pointer-events: none;
-}
-
-:focus {
-  outline: 2px solid #0066cc;
-  outline-offset: 2px;
+    .hero-text {
+        padding: 0 20px;
+    }
+    
+    .theme-btn-container {
+        left: 150px;
+    }
+    
+    .w3-quarter, .w3-col {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .accessibility-panel {
+        width: 280px;
+        right: 10px;
+        bottom: 80px;
+    }
 }
