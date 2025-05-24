@@ -1,227 +1,154 @@
 // ========== CONTROLE DE TEMA ========== //
 document.addEventListener('DOMContentLoaded', function() {
-  // Verifica o tema salvo ou define escuro como padrão
-  const savedTheme = localStorage.getItem('theme') || 'dark-mode';
-  document.body.classList.add(savedTheme);
-  updateThemeIcon(savedTheme);
+    // Configuração inicial do tema
+    const savedTheme = localStorage.getItem('theme') || 'dark-mode';
+    document.body.classList.add(savedTheme);
+    updateThemeIcon(savedTheme);
 
-  // Configura o botão de alternância
-  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-  
-  // Inicializa acessibilidade
-  initAccessibility();
-  
-  // Atalho de teclado Alt+A para acessibilidade
-  document.addEventListener('keydown', function(e) {
-    if (e.altKey && e.key.toLowerCase() === 'a') {
-      document.getElementById('accessibilityPanel').classList.toggle('active');
-    }
-  });
+    // Botão de alternância de tema
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+    // Inicializa acessibilidade
+    initAccessibility();
+
+    // Atalho de teclado Alt+A
+    document.addEventListener('keydown', function(e) {
+        if (e.altKey && e.key.toLowerCase() === 'a') {
+            document.getElementById('accessibilityPanel').classList.toggle('active');
+        }
+    });
 });
 
 function toggleTheme() {
-  const isLight = document.body.classList.contains('light-mode');
-  
-  document.body.classList.toggle('light-mode');
-  document.body.classList.toggle('dark-mode');
-  
-  const newTheme = isLight ? 'dark-mode' : 'light-mode';
-  localStorage.setItem('theme', newTheme);
-  updateThemeIcon(newTheme);
+    const isLight = document.body.classList.contains('light-mode');
+    document.body.classList.toggle('light-mode');
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', isLight ? 'dark-mode' : 'light-mode');
+    updateThemeIcon(isLight ? 'dark-mode' : 'light-mode');
 }
 
 function updateThemeIcon(theme) {
-  const icon = document.getElementById('themeIcon');
-  icon.textContent = theme === 'light-mode' ? '☾' : '☀';
+    document.getElementById('themeIcon').textContent = theme === 'light-mode' ? '☾' : '☀';
 }
 
 // ========== ACESSIBILIDADE ========== //
-let currentFontSize = 0; // -2 = smaller, -1 = small, 0 = normal, 1 = large, 2 = larger, 3 = largest
+let currentFontSize = 0;
 
 function initAccessibility() {
-  // Elementos
-  const accessibilityBtn = document.getElementById('accessibilityBtn');
-  const accessibilityPanel = document.getElementById('accessibilityPanel');
-  const closePanel = document.getElementById('closePanel');
+    // Painel de acessibilidade
+    document.getElementById('accessibilityBtn').addEventListener('click', function() {
+        document.getElementById('accessibilityPanel').classList.toggle('active');
+    });
 
-  // Abrir/fechar painel
-  accessibilityBtn.addEventListener('click', () => {
-    accessibilityPanel.classList.toggle('active');
-  });
+    document.getElementById('closePanel').addEventListener('click', function() {
+        document.getElementById('accessibilityPanel').classList.remove('active');
+    });
 
-  closePanel.addEventListener('click', () => {
-    accessibilityPanel.classList.remove('active');
-  });
+    // Controles de fonte
+    document.getElementById('increaseFont').addEventListener('click', function() {
+        if (currentFontSize < 3) {
+            currentFontSize++;
+            updateFontSize();
+        }
+    });
 
-  // Controles de tamanho de fonte
-  document.getElementById('increaseFont').addEventListener('click', () => {
-    if (currentFontSize < 3) {
-      currentFontSize++;
-      updateFontSize();
-    }
-  });
+    document.getElementById('decreaseFont').addEventListener('click', function() {
+        if (currentFontSize > -2) {
+            currentFontSize--;
+            updateFontSize();
+        }
+    });
 
-  document.getElementById('decreaseFont').addEventListener('click', () => {
-    if (currentFontSize > -2) {
-      currentFontSize--;
-      updateFontSize();
-    }
-  });
+    document.getElementById('resetFont').addEventListener('click', function() {
+        currentFontSize = 0;
+        updateFontSize();
+    });
 
-  document.getElementById('resetFont').addEventListener('click', () => {
-    currentFontSize = 0;
-    updateFontSize();
-  });
+    // Controles de contraste
+    document.getElementById('highContrast').addEventListener('click', function() {
+        document.body.classList.add('high-contrast');
+        cleanContrastStyles();
+        localStorage.setItem('contrast', 'high');
+    });
 
-  function updateFontSize() {
-    document.body.classList.remove('font-smaller', 'font-small', 'font-normal', 
-                                 'font-large', 'font-larger', 'font-largest');
-    
-    const fontClasses = [
-      'font-smaller',  // -2
-      'font-small',    // -1
-      'font-normal',   // 0
-      'font-large',    // 1
-      'font-larger',   // 2
-      'font-largest'   // 3
-    ];
-    
-    document.body.classList.add(fontClasses[currentFontSize + 2]);
+    document.getElementById('resetContrast').addEventListener('click', function() {
+        document.body.classList.remove('high-contrast');
+        cleanContrastStyles();
+        localStorage.setItem('contrast', 'normal');
+    });
+
+    // Outras funções de acessibilidade
+    document.getElementById('highlightLinks').addEventListener('click', function() {
+        document.body.classList.toggle('highlight-links');
+        localStorage.setItem('highlightLinks', document.body.classList.contains('highlight-links'));
+    });
+
+    // Carrega preferências
+    loadAccessibilityPreferences();
+}
+
+function updateFontSize() {
+    const sizes = ['font-smaller', 'font-small', 'font-normal', 'font-large', 'font-larger', 'font-largest'];
+    document.body.classList.remove(...sizes);
+    document.body.classList.add(sizes[currentFontSize + 2]);
     localStorage.setItem('fontSize', currentFontSize);
-  }
+}
 
-  // Controles de contraste - ATUALIZADO PARA ALTO CONTRASTE COMPLETO
-  document.getElementById('highContrast').addEventListener('click', () => {
-    document.body.classList.add('high-contrast');
-    // Aplica a todos os elementos da página
+function cleanContrastStyles() {
     document.querySelectorAll('*').forEach(el => {
-      el.classList.add('high-contrast-element');
+        el.style.backgroundColor = '';
+        el.style.color = '';
     });
-    localStorage.setItem('contrast', 'high');
-  });
-
-  document.getElementById('resetContrast').addEventListener('click', () => {
-    document.body.classList.remove('high-contrast');
-    // Remove de todos os elementos
-    document.querySelectorAll('.high-contrast-element').forEach(el => {
-      el.classList.remove('high-contrast-element');
-    });
-    localStorage.setItem('contrast', 'normal');
-  });
-
-  // Destacar links
-  document.getElementById('highlightLinks').addEventListener('click', () => {
-    document.body.classList.toggle('highlight-links');
-    localStorage.setItem('highlightLinks', document.body.classList.contains('highlight-links'));
-  });
-
-  // Descrição de imagens - ATUALIZADO PARA TRATAMENTO DE IMAGENS
-  document.getElementById('imageDescriptions').addEventListener('click', () => {
-    const images = document.querySelectorAll('img:not([aria-hidden="true"])');
-    let descriptions = "";
-    
-    images.forEach((img, index) => {
-      const alt = img.getAttribute('alt') || 'Imagem sem descrição textual';
-      if (index > 0) descriptions += "\n\n";
-      descriptions += `Imagem ${index + 1}: ${alt}`;
-      
-      // Efeito visual temporário melhorado
-      img.style.outline = '3px dashed yellow';
-      img.style.boxShadow = '0 0 0 3px black';
-      setTimeout(() => {
-        img.style.outline = '';
-        img.style.boxShadow = '';
-      }, 2000);
-    });
-    
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(descriptions);
-      utterance.lang = 'pt-BR';
-      window.speechSynthesis.speak(utterance);
-    } else {
-      alert(descriptions.length > 500 ? descriptions.substring(0, 500) + '...' : descriptions);
-    }
-  });
-
-  // Leitura de página
-  document.getElementById('readPage').addEventListener('click', () => {
-    const mainContent = document.querySelector('main') || document.body;
-    const text = mainContent.innerText.replace(/\s+/g, ' ').trim();
-    
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'pt-BR';
-      utterance.rate = 0.9;
-      window.speechSynthesis.speak(utterance);
-    } else {
-      alert('Seu navegador não suporta leitura de texto. Aqui está o início do conteúdo:\n\n' + 
-            text.substring(0, 500) + '...');
-    }
-  });
-
-  document.getElementById('stopReading').addEventListener('click', () => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
-  });
-
-  // Carrega preferências salvas
-  loadAccessibilityPreferences();
 }
 
 function loadAccessibilityPreferences() {
-  // Fonte
-  const savedFontSize = localStorage.getItem('fontSize');
-  if (savedFontSize) {
-    currentFontSize = parseInt(savedFontSize);
-    updateFontSize();
-  }
+    // Fonte
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
+        currentFontSize = parseInt(savedFontSize);
+        updateFontSize();
+    }
 
-  // Contraste
-  if (localStorage.getItem('contrast') === 'high') {
-    document.body.classList.add('high-contrast');
-    // Aplica a todos os elementos ao recarregar
-    document.querySelectorAll('*').forEach(el => {
-      el.classList.add('high-contrast-element');
-    });
-  }
+    // Contraste
+    if (localStorage.getItem('contrast') === 'high') {
+        document.body.classList.add('high-contrast');
+        cleanContrastStyles();
+    }
 
-  // Links destacados
-  if (localStorage.getItem('highlightLinks') === 'true') {
-    document.body.classList.add('highlight-links');
-  }
+    // Links destacados
+    if (localStorage.getItem('highlightLinks') === 'true') {
+        document.body.classList.add('highlight-links');
+    }
 }
 
 // ========== MENU MOBILE ========== //
 document.getElementById('menuButton').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('sidebar').style.display = 'block';
+    e.preventDefault();
+    document.getElementById('sidebar').style.display = 'block';
 });
 
 document.getElementById('closeMenu').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('sidebar').style.display = 'none';
+    e.preventDefault();
+    document.getElementById('sidebar').style.display = 'none';
 });
 
 // Fecha menu ao clicar nos links
 document.querySelectorAll('#sidebar a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.getElementById('sidebar').style.display = 'none';
-  });
+    link.addEventListener('click', function() {
+        document.getElementById('sidebar').style.display = 'none';
+    });
 });
 
 // ========== SCROLL SUAVE ========== //
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 80,
-        behavior: 'smooth'
-      });
-    }
-  });
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
 });
