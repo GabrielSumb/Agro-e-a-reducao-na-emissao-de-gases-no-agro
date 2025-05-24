@@ -60,18 +60,21 @@
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-card" id="navbar">
-    <a href="#home" class="w3-bar-item w3-button w3-wide">AGRINHO 2025</a>
-    <!-- Botão de Tema (SOL/LUA) -->
-    <button id="themeToggle" class="w3-bar-item w3-button w3-hover-none theme-btn" aria-label="Alternar tema">
-      <span id="themeIcon">☀</span>
-    </button>
+    <a href="#home" class="w3-bar-item w3-button w3-wide logo">AGRINHO 2025</a>
+    
+    <!-- Botão de Tema ajustado -->
+    <div class="theme-btn-container">
+      <button id="themeToggle" class="w3-button w3-hover-none theme-btn" aria-label="Alternar tema">
+        <span id="themeIcon">☀</span>
+      </button>
+    </div>
+    
     <!-- Links de navegação -->
     <div class="w3-right w3-hide-small">
       <a href="#solucoes" class="w3-bar-item w3-button">SOLUÇÕES</a>
       <a href="#telhados" class="w3-bar-item w3-button">TELHADOS VERDES</a>
       <a href="#cortinas" class="w3-bar-item w3-button">CORTINAS VERDES</a>
       <a href="#beneficios" class="w3-bar-item w3-button">BENEFÍCIOS</a>
-      <a href="#contato" class="w3-bar-item w3-button">PARTICIPE</a>
     </div>
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="menuButton">
       <i class="fa fa-bars"></i>
@@ -86,7 +89,6 @@
   <a href="#telhados" class="w3-bar-item w3-button">TELHADOS VERDES</a>
   <a href="#cortinas" class="w3-bar-item w3-button">CORTINAS VERDES</a>
   <a href="#beneficios" class="w3-bar-item w3-button">BENEFÍCIOS</a>
-  <a href="#contato" class="w3-bar-item w3-button">PARTICIPE</a>
 </nav>
 
 <!-- Hero Section -->
@@ -139,7 +141,6 @@
         <li>✅ Diminuir custos com climatização</li>
         <li>✅ Aumentar biodiversidade local</li>
       </ul>
-      <a href="#contato" class="w3-button w3-green w3-padding-large">QUERO IMPLANTAR</a>
     </div>
     <div class="w3-col m6">
       <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae" class="w3-image w3-round-large" alt="Telhado verde em propriedade rural com vegetação exuberante" style="width:100%">
@@ -162,7 +163,6 @@
         <li>🦋 Atraem polinizadores naturais</li>
         <li>🌎 Sequesteram carbono do ar</li>
       </ul>
-      <a href="#contato" class="w3-button w3-green w3-padding-large">APRENDA A INSTALAR</a>
     </div>
   </div>
 </div>
@@ -183,29 +183,6 @@
       <i class="fa fa-globe w3-jumbo"></i>
       <p class="w3-xlarge">Sustentabilidade</p>
     </div>
-  </div>
-</div>
-
-<!-- Contato -->
-<div class="w3-container w3-padding-64" id="contato">
-  <h2 class="w3-center">FAÇA PARTE DESSA MUDANÇA!</h2>
-  <p class="w3-center w3-large">Cadastre-se para receber incentivos:</p>
-  <div class="w3-row-padding" style="margin-top:64px">
-    <form class="w3-container w3-card w3-padding-32 w3-form">
-      <div class="w3-section">
-        <label>Nome</label>
-        <input class="w3-input w3-border" type="text" required aria-label="Seu nome completo">
-      </div>
-      <div class="w3-section">
-        <label>Email</label>
-        <input class="w3-input w3-border" type="email" required aria-label="Seu endereço de email">
-      </div>
-      <div class="w3-section">
-        <label>Propriedade (ha)</label>
-        <input class="w3-input w3-border" type="number" aria-label="Tamanho da propriedade em hectares">
-      </div>
-      <button type="submit" class="w3-button w3-green w3-padding-large">QUERO PARTICIPAR</button>
-    </form>
   </div>
 </div>
 
