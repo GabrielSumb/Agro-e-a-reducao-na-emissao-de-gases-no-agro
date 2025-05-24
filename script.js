@@ -134,7 +134,7 @@ function initAccessibility() {
     const text = mainContent.innerText.replace(/\s+/g, ' ').trim();
     
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel(); // Para qualquer leitura anterior
+      window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'pt-BR';
       utterance.rate = 0.9;
