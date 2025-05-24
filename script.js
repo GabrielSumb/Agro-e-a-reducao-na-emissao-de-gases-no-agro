@@ -29,6 +29,8 @@ function updateThemeIcon(theme) {
 }
 
 // ========== ACESSIBILIDADE ========== //
+let currentFontSize = 0; // -2 = smaller, -1 = small, 0 = normal, 1 = large, 2 = larger, 3 = largest
+
 function initAccessibility() {
   // Elementos
   const accessibilityBtn = document.getElementById('accessibilityBtn');
@@ -46,20 +48,40 @@ function initAccessibility() {
 
   // Controles de tamanho de fonte
   document.getElementById('increaseFont').addEventListener('click', () => {
-    document.body.classList.add('large-text');
-    document.body.classList.remove('larger-text');
-    localStorage.setItem('fontSize', 'large');
+    if (currentFontSize < 3) {
+      currentFontSize++;
+      updateFontSize();
+    }
   });
 
   document.getElementById('decreaseFont').addEventListener('click', () => {
-    document.body.classList.remove('large-text', 'larger-text');
-    localStorage.setItem('fontSize', 'normal');
+    if (currentFontSize > -2) {
+      currentFontSize--;
+      updateFontSize();
+    }
   });
 
   document.getElementById('resetFont').addEventListener('click', () => {
-    document.body.classList.remove('large-text', 'larger-text');
-    localStorage.setItem('fontSize', 'normal');
+    currentFontSize = 0;
+    updateFontSize();
   });
+
+  function updateFontSize() {
+    document.body.classList.remove('font-smaller', 'font-small', 'font-normal', 
+                                 'font-large', 'font-larger', 'font-largest');
+    
+    const fontClasses = [
+      'font-smaller',  // -2
+      'font-small',    // -1
+      'font-normal',   // 0
+      'font-large',    // 1
+      'font-larger',   // 2
+      'font-largest'   // 3
+    ];
+    
+    document.body.classList.add(fontClasses[currentFontSize + 2]);
+    localStorage.setItem('fontSize', currentFontSize);
+  }
 
   // Controles de contraste
   document.getElementById('highContrast').addEventListener('click', () => {
@@ -157,11 +179,10 @@ function initAccessibility() {
 
 function loadAccessibilityPreferences() {
   // Fonte
-  const fontSize = localStorage.getItem('fontSize');
-  if (fontSize === 'large') {
-    document.body.classList.add('large-text');
-  } else if (fontSize === 'larger') {
-    document.body.classList.add('larger-text');
+  const savedFontSize = localStorage.getItem('fontSize');
+  if (savedFontSize) {
+    currentFontSize = parseInt(savedFontSize);
+    updateFontSize();
   }
 
   // Contraste
