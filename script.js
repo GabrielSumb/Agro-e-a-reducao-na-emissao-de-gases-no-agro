@@ -90,14 +90,22 @@ function initAccessibility() {
     localStorage.setItem('fontSize', currentFontSize);
   }
 
-  // Controles de contraste
+  // Controles de contraste - ATUALIZADO PARA ALTO CONTRASTE COMPLETO
   document.getElementById('highContrast').addEventListener('click', () => {
     document.body.classList.add('high-contrast');
+    // Aplica a todos os elementos da página
+    document.querySelectorAll('*').forEach(el => {
+      el.classList.add('high-contrast-element');
+    });
     localStorage.setItem('contrast', 'high');
   });
 
   document.getElementById('resetContrast').addEventListener('click', () => {
     document.body.classList.remove('high-contrast');
+    // Remove de todos os elementos
+    document.querySelectorAll('.high-contrast-element').forEach(el => {
+      el.classList.remove('high-contrast-element');
+    });
     localStorage.setItem('contrast', 'normal');
   });
 
@@ -107,7 +115,7 @@ function initAccessibility() {
     localStorage.setItem('highlightLinks', document.body.classList.contains('highlight-links'));
   });
 
-  // Descrição de imagens
+  // Descrição de imagens - ATUALIZADO PARA TRATAMENTO DE IMAGENS
   document.getElementById('imageDescriptions').addEventListener('click', () => {
     const images = document.querySelectorAll('img:not([aria-hidden="true"])');
     let descriptions = "";
@@ -117,9 +125,13 @@ function initAccessibility() {
       if (index > 0) descriptions += "\n\n";
       descriptions += `Imagem ${index + 1}: ${alt}`;
       
-      // Adiciona efeito visual temporário
-      img.style.outline = '3px solid yellow';
-      setTimeout(() => img.style.outline = '', 2000);
+      // Efeito visual temporário melhorado
+      img.style.outline = '3px dashed yellow';
+      img.style.boxShadow = '0 0 0 3px black';
+      setTimeout(() => {
+        img.style.outline = '';
+        img.style.boxShadow = '';
+      }, 2000);
     });
     
     if ('speechSynthesis' in window) {
@@ -169,6 +181,10 @@ function loadAccessibilityPreferences() {
   // Contraste
   if (localStorage.getItem('contrast') === 'high') {
     document.body.classList.add('high-contrast');
+    // Aplica a todos os elementos ao recarregar
+    document.querySelectorAll('*').forEach(el => {
+      el.classList.add('high-contrast-element');
+    });
   }
 
   // Links destacados
