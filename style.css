@@ -16,21 +16,21 @@ body, html {
 
 /* ========== TEMA ESCURO PADRÃO ========== */
 body.dark-mode {
-    background-color: #121212;
+    background-color: #000000;
     color: #e0e0e0;
 }
 
 .dark-mode .w3-white {
-    background-color: #1e1e1e !important;
+    background-color: #000000 !important;
     color: #ffffff !important;
 }
 
 .dark-mode .w3-light-grey {
-    background-color: #2d2d2d !important;
+    background-color: #4B0082 !important;
 }
 
 .dark-mode .w3-green {
-    background-color: #4a1d96 !important;
+    background-color: #4B0082 !important;
     color: white !important;
 }
 
