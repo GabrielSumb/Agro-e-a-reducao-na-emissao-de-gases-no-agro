@@ -224,6 +224,11 @@ body.light-mode {
   color: black;
 }
 
+/* Adicione estas regras para os ícones no modo claro */
+.light-mode .feature-icon {
+  color: #333 !important;
+}
+
 .light-mode .w3-white {
   background-color: white !important;
   color: black !important;
