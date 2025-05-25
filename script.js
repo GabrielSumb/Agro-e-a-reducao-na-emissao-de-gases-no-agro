@@ -1,9 +1,12 @@
 // ========== CONTROLE DE TEMA ========== //
 document.addEventListener('DOMContentLoaded', function() {
-    // Tema escuro como padrão
+    // Configuração inicial do tema
     const savedTheme = localStorage.getItem('theme') || 'dark-mode';
     document.body.classList.add(savedTheme);
     updateThemeIcon(savedTheme);
+
+    // Carrega preferências
+    loadAccessibilityPreferences();
 
     // Botão de tema
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
@@ -27,12 +30,16 @@ function toggleTheme() {
     updateThemeIcon(isLight ? 'dark-mode' : 'light-mode');
 }
 
-// ========== ACESSIBILIDADE COMPLETA ========== //
+function updateThemeIcon(theme) {
+    document.getElementById('themeIcon').textContent = theme === 'light-mode' ? '☾' : '☀';
+}
+
+// ========== ACESSIBILIDADE ========== //
 let currentFontSize = 0;
 let currentZoom = 1;
 
 function initAccessibility() {
-    // Painel
+    // Painel de acessibilidade
     document.getElementById('accessibilityBtn').addEventListener('click', function() {
         document.getElementById('accessibilityPanel').classList.toggle('active');
     });
@@ -46,6 +53,7 @@ function initAccessibility() {
         if (currentFontSize < 3) {
             currentFontSize++;
             updateFontSize();
+            localStorage.setItem('fontSize', currentFontSize);
         }
     });
     
@@ -53,21 +61,25 @@ function initAccessibility() {
         if (currentFontSize > -2) {
             currentFontSize--;
             updateFontSize();
+            localStorage.setItem('fontSize', currentFontSize);
         }
     });
     
     document.getElementById('resetFont').addEventListener('click', function() {
         currentFontSize = 0;
         updateFontSize();
+        localStorage.setItem('fontSize', currentFontSize);
     });
 
     // Contraste
     document.getElementById('highContrast').addEventListener('click', function() {
         document.body.classList.add('high-contrast');
+        localStorage.setItem('contrast', 'high');
     });
     
     document.getElementById('resetContrast').addEventListener('click', function() {
         document.body.classList.remove('high-contrast');
+        localStorage.setItem('contrast', 'normal');
     });
 
     // Zoom
@@ -75,6 +87,7 @@ function initAccessibility() {
         if (currentZoom < 1.2) {
             currentZoom += 0.1;
             updateZoom();
+            localStorage.setItem('zoom', currentZoom);
         }
     });
     
@@ -82,12 +95,14 @@ function initAccessibility() {
         if (currentZoom > 0.8) {
             currentZoom -= 0.1;
             updateZoom();
+            localStorage.setItem('zoom', currentZoom);
         }
     });
     
     document.getElementById('resetZoom').addEventListener('click', function() {
         currentZoom = 1;
         updateZoom();
+        localStorage.setItem('zoom', currentZoom);
     });
 
     // Leitura
@@ -97,6 +112,7 @@ function initAccessibility() {
     // Navegação
     document.getElementById('highlightLinks').addEventListener('click', function() {
         document.body.classList.toggle('highlight-links');
+        localStorage.setItem('highlightLinks', document.body.classList.contains('highlight-links'));
     });
     
     document.getElementById('imageDescriptions').addEventListener('click', describeImages);
@@ -109,22 +125,80 @@ function updateFontSize() {
 }
 
 function updateZoom() {
-    document.body.style.transform = `scale(${currentZoom})`;
-    document.body.style.transformOrigin = 'top left';
-    document.body.style.width = '100%';
-    document.body.style.overflowX = 'hidden';
+    if (currentZoom === 1) {
+        document.body.classList.remove('zoomed-page', 'double-zoomed');
+    } else if (currentZoom <= 1.1) {
+        document.body.classList.remove('double-zoomed');
+        document.body.classList.add('zoomed-page');
+    } else {
+        document.body.classList.remove('zoomed-page');
+        document.body.classList.add('double-zoomed');
+    }
 }
 
 function readPage() {
-    // Implementação da leitura da página
+    const mainContent = document.querySelector('main') || document.body;
+    const text = mainContent.innerText.replace(/\s+/g, ' ').trim();
+    
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'pt-BR';
+        window.speechSynthesis.speak(utterance);
+    } else {
+        alert('Seu navegador não suporta leitura de texto.');
+    }
 }
 
 function stopReading() {
-    // Implementação para parar a leitura
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+    }
 }
 
 function describeImages() {
-    // Implementação da descrição de imagens
+    const images = document.querySelectorAll('img:not([aria-hidden="true"])');
+    let descriptions = "";
+    
+    images.forEach((img, index) => {
+        const alt = img.getAttribute('alt') || 'Imagem sem descrição';
+        descriptions += `Imagem ${index + 1}: ${alt}\n\n`;
+        img.style.outline = '3px dashed yellow';
+        setTimeout(() => img.style.outline = '', 2000);
+    });
+    
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(descriptions);
+        utterance.lang = 'pt-BR';
+        window.speechSynthesis.speak(utterance);
+    } else {
+        alert(descriptions);
+    }
+}
+
+function loadAccessibilityPreferences() {
+    // Tamanho da fonte
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
+        currentFontSize = parseInt(savedFontSize);
+        updateFontSize();
+    }
+
+    // Contraste
+    if (localStorage.getItem('contrast') === 'high') {
+        document.body.classList.add('high-contrast');
+    }
+
+    // Zoom
+    const savedZoom = localStorage.getItem('zoom');
+    if (savedZoom) {
+        currentZoom = parseFloat(savedZoom);
+        updateZoom();
+    }
+
+    // Links destacados
+    if (localStorage.getItem('highlightLinks') === 'true') {
+        document.body.classList.add('highlight-links');
+    }
 }
 
 // ========== MENU MOBILE ========== //
