@@ -1,9 +1,40 @@
+
+// ========== TECLA DE ATALHO (Alt+A) ========== //
+document.addEventListener('keydown', function(e) {
+  if (e.altKey && e.key.toLowerCase() === 'a') {
+    document.getElementById('accessibilityPanel').classList.toggle('active');
+    e.preventDefault();
+  }
+});
+
 // ========== CONTROLE DE TEMA ========== //
 document.addEventListener('DOMContentLoaded', function() {
   // Verifica o tema salvo ou define escuro como padrão
   const savedTheme = localStorage.getItem('theme') || 'dark-mode';
   document.body.classList.add(savedTheme);
   updateThemeIcon(savedTheme);
+
+  // ========== CONTROLE DE COR DOS ÍCONES ========== //
+function toggleTheme() {
+  const isLight = document.body.classList.contains('light-mode');
+  
+  document.body.classList.toggle('light-mode');
+  document.body.classList.toggle('dark-mode');
+  
+  // Atualiza cores dos ícones
+  const icons = document.querySelectorAll('.feature-icon');
+  icons.forEach(icon => {
+    if (isLight) {
+      icon.style.color = '#ffffff'; // Tema escuro - ícones brancos
+    } else {
+      icon.style.color = '#333333'; // Tema claro - ícones pretos
+    }
+  });
+  
+  const newTheme = isLight ? 'dark-mode' : 'light-mode';
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+}
 
   // Configura o botão de alternância
   document.getElementById('themeToggle').addEventListener('click', toggleTheme);
@@ -94,32 +125,7 @@ function initAccessibility() {
     localStorage.setItem('contrast', 'normal');
   });
 
-  // Controles de zoom
-  document.getElementById('zoomIn').addEventListener('click', () => {
-    if (!document.body.classList.contains('zoomed-page')) {
-      document.body.classList.add('zoomed-page');
-      localStorage.setItem('zoom', 'zoomed');
-    } else {
-      document.body.classList.replace('zoomed-page', 'double-zoomed');
-      localStorage.setItem('zoom', 'double-zoomed');
-    }
-  });
-
-  document.getElementById('zoomOut').addEventListener('click', () => {
-    if (document.body.classList.contains('double-zoomed')) {
-      document.body.classList.replace('double-zoomed', 'zoomed-page');
-      localStorage.setItem('zoom', 'zoomed');
-    } else {
-      document.body.classList.remove('zoomed-page');
-      localStorage.setItem('zoom', 'normal');
-    }
-  });
-
-  document.getElementById('resetZoom').addEventListener('click', () => {
-    document.body.classList.remove('zoomed-page', 'double-zoomed');
-    localStorage.setItem('zoom', 'normal');
-  });
-
+ 
   // Destacar links
   document.getElementById('highlightLinks').addEventListener('click', () => {
     document.body.classList.toggle('highlight-links');
