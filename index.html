@@ -1,197 +1,203 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrinho 2025 | Agro Sustentável</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agrinho 2025 | Agro Sustentável</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-mode">
 
-    <!-- Botão de Acessibilidade -->
-    <div class="accessibility-btn" id="accessibilityBtn" title="Acessibilidade (Alt+A)">
-        <span class="libras-icon">👐</span>
+<!-- Botão Flutuante de Acessibilidade -->
+<div class="accessibility-btn" id="accessibilityBtn" title="Acessibilidade">
+  <span class="libras-icon">👐</span>
+</div>
+
+<!-- Painel de Acessibilidade -->
+<div class="accessibility-panel" id="accessibilityPanel">
+  <div class="accessibility-header">
+    <h3>Opções de Acessibilidade</h3>
+    <button class="close-panel" id="closePanel" aria-label="Fechar painel">×</button>
+  </div>
+  <div class="accessibility-options">
+    <div class="option-group">
+      <h4>Tamanho do Texto</h4>
+      <button class="w3-button w3-blue" id="increaseFont" aria-label="Aumentar fonte">A+</button>
+      <button class="w3-button w3-blue" id="decreaseFont" aria-label="Diminuir fonte">A-</button>
+      <button class="w3-button w3-blue" id="resetFont" aria-label="Fonte padrão">A</button>
     </div>
-
-    <!-- Painel de Acessibilidade -->
-    <div class="accessibility-panel" id="accessibilityPanel">
-        <div class="accessibility-header">
-            <h3>Opções de Acessibilidade</h3>
-            <button class="close-panel" id="closePanel" aria-label="Fechar painel">×</button>
-        </div>
-        <div class="accessibility-options">
-            <div class="option-group">
-                <h4>Tamanho do Texto</h4>
-                <button class="w3-button w3-blue" id="increaseFont">A+</button>
-                <button class="w3-button w3-blue" id="decreaseFont">A-</button>
-                <button class="w3-button w3-blue" id="resetFont">Padrão</button>
-            </div>
-            <div class="option-group">
-                <h4>Contraste</h4>
-                <button class="w3-button w3-blue" id="highContrast">Alto Contraste</button>
-                <button class="w3-button w3-blue" id="resetContrast">Original</button>
-            </div>
-            <div class="option-group">
-                <h4>Zoom</h4>
-                <button class="w3-button w3-blue" id="zoomIn">+</button>
-                <button class="w3-button w3-blue" id="zoomOut">-</button>
-                <button class="w3-button w3-blue" id="resetZoom">100%</button>
-            </div>
-            <div class="option-group">
-                <h4>Leitura</h4>
-                <button class="w3-button w3-blue" id="readPage">Ler Página</button>
-                <button class="w3-button w3-blue" id="stopReading">Parar</button>
-            </div>
-            <div class="option-group">
-                <h4>Navegação</h4>
-                <button class="w3-button w3-blue" id="highlightLinks">Destacar Links</button>
-                <button class="w3-button w3-blue" id="imageDescriptions">Descrever Imagens</button>
-            </div>
-        </div>
+    
+    <div class="option-group">
+      <h4>Contraste</h4>
+      <button class="w3-button w3-blue" id="highContrast" aria-label="Alto contraste">Alto Contraste</button>
+      <button class="w3-button w3-blue" id="resetContrast" aria-label="Cores originais">Cores Originais</button>
     </div>
-
-    <!-- Navbar -->
-    <div class="w3-top">
-        <div class="w3-bar w3-white w3-card" id="navbar">
-            <a href="#home" class="w3-bar-item w3-button w3-wide logo">AGRINHO 2025</a>
-            
-            <div class="theme-btn-container">
-                <button id="themeToggle" class="w3-button w3-hover-none theme-btn">
-                    <span id="themeIcon">☀</span>
-                </button>
-            </div>
-            
-            <div class="w3-right w3-hide-small">
-                <a href="#solucoes" class="w3-bar-item w3-button">SOLUÇÕES</a>
-                <a href="#telhados" class="w3-bar-item w3-button">TELHADOS VERDES</a>
-                <a href="#cortinas" class="w3-bar-item w3-button">CORTINAS VERDES</a>
-                <a href="#beneficios" class="w3-bar-item w3-button">BENEFÍCIOS</a>
-            </div>
-            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="menuButton">
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>
+    
+    <div class="option-group">
+      <h4>Zoom</h4>
+      <button class="w3-button w3-blue" id="zoomIn" aria-label="Aumentar zoom">+</button>
+      <button class="w3-button w3-blue" id="zoomOut" aria-label="Diminuir zoom">-</button>
+      <button class="w3-button w3-blue" id="resetZoom" aria-label="Zoom padrão">100%</button>
     </div>
-
-    <!-- Sidebar Mobile -->
-    <nav class="w3-sidebar w3-bar-block w3-green w3-card w3-animate-left w3-hide-medium w3-hide-large" id="sidebar">
-        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-large" id="closeMenu">×</a>
-        <a href="#solucoes" class="w3-bar-item w3-button">SOLUÇÕES</a>
-        <a href="#telhados" class="w3-bar-item w3-button">TELHADOS VERDES</a>
-        <a href="#cortinas" class="w3-bar-item w3-button">CORTINAS VERDES</a>
-        <a href="#beneficios" class="w3-bar-item w3-button">BENEFÍCIOS</a>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="w3-display-container hero-bg keep-normal" id="home">
-        <div class="w3-display-left w3-text-white hero-text">
-            <h1 class="w3-xxlarge w3-hide-small">AGRO SUSTENTÁVEL</h1>
-            <h1 class="w3-large w3-hide-large w3-hide-medium">AGRO SUSTENTÁVEL</h1>
-            <p class="w3-large">Redução de Gases do Efeito Estufa no Campo</p>
-            <a href="#solucoes" class="w3-button w3-white w3-padding-large w3-large w3-margin-top">SAIBA MAIS</a>
-        </div>
-    </header>
-
-    <!-- Soluções -->
-    <div class="w3-container w3-light-grey w3-padding-64" id="solucoes">
-        <h2 class="w3-wide section-title">SOLUÇÕES VERDES PARA O AGRO</h2>
-        <p class="w3-opacity">Tecnologias que reduzem emissões e aumentam produtividade</p>
-        <div class="w3-row-padding" style="margin-top:64px">
-            <div class="w3-quarter">
-                <i class="fa fa-leaf w3-margin-bottom w3-jumbo theme-icon"></i>
-                <p class="w3-large">Telhados Verdes</p>
-                <p>Reduzem temperatura e absorvem CO<sub>2</sub> em propriedades rurais.</p>
-            </div>
-            <div class="w3-quarter">
-                <i class="fa fa-tree w3-margin-bottom w3-jumbo theme-icon"></i>
-                <p class="w3-large">Cortinas Verdes</p>
-                <p>Protegem cultivos e diminuem uso de irrigação.</p>
-            </div>
-            <div class="w3-quarter">
-                <i class="fa fa-recycle w3-margin-bottom w3-jumbo theme-icon"></i>
-                <p class="w3-large">Agricultura Regenerativa</p>
-                <p>Recupera solos e sequestra carbono.</p>
-            </div>
-            <div class="w3-quarter">
-                <i class="fa fa-sun-o w3-margin-bottom w3-jumbo theme-icon"></i>
-                <p class="w3-large">Energia Limpa</p>
-                <p>Biogás e solar para propriedades sustentáveis.</p>
-            </div>
-        </div>
+    
+    <div class="option-group">
+      <h4>Leitura</h4>
+      <button class="w3-button w3-blue" id="readPage" aria-label="Ler página">Ler Página</button>
+      <button class="w3-button w3-blue" id="stopReading" aria-label="Parar leitura">Parar</button>
     </div>
-
-    <!-- Telhados Verdes -->
-    <div class="w3-container w3-light-grey w3-padding-64" id="telhados">
-        <div class="w3-row-padding">
-            <div class="w3-col m6">
-                <h3 class="section-title">TELHADOS VERDES NO AGRO</h3>
-                <p>Telhados cobertos por vegetação podem:</p>
-                <ul class="w3-ul">
-                    <li>✅ Reduzir até 30% do calor interno</li>
-                    <li>✅ Absorver CO<sub>2</sub> e melhorar qualidade do ar</li>
-                    <li>✅ Diminuir custos com climatização</li>
-                    <li>✅ Aumentar biodiversidade local</li>
-                </ul>
-            </div>
-            <div class="w3-col m6">
-                <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae" class="w3-image w3-round-large" alt="Telhado verde em propriedade rural">
-            </div>
-        </div>
+    
+    <div class="option-group">
+      <h4>Navegação</h4>
+      <button class="w3-button w3-blue" id="highlightLinks" aria-label="Destacar links">Destacar Links</button>
+      <button class="w3-button w3-blue" id="imageDescriptions" aria-label="Descrever imagens">Descrição de Imagens</button>
     </div>
+  </div>
+</div>
 
-    <!-- Cortinas Verdes -->
-    <div class="w3-container w3-padding-64 w3-light-grey" id="cortinas">
-        <div class="w3-row-padding">
-            <div class="w3-col m6">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="w3-image w3-round-large" alt="Cortina verde protegendo plantação">
-            </div>
-            <div class="w3-col m6">
-                <h3 class="section-title">CORTINAS VERDES</h3>
-                <p>Barreiras vegetais que protegem lavouras:</p>
-                <ul class="w3-ul">
-                    <li>🌿 Reduzem ventos fortes</li>
-                    <li>💧 Diminuem evaporação</li>
-                    <li>🦋 Atraem polinizadores</li>
-                    <li>🌎 Sequesteram carbono</li>
-                </ul>
-            </div>
-        </div>
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="navbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide logo">AGRINHO 2025</a>
+    
+    <!-- Botão de Tema ajustado -->
+    <div class="theme-btn-container">
+      <button id="themeToggle" class="w3-button w3-hover-none theme-btn" aria-label="Alternar tema">
+        <span id="themeIcon">☀</span>
+      </button>
     </div>
-
-    <!-- Benefícios -->
-    <div class="w3-container w3-green w3-padding-64" id="beneficios">
-        <h2 class="w3-center section-title">VANTAGENS PARA O AGRICULTOR</h2>
-        <div class="w3-row-padding" style="margin-top:64px">
-            <div class="w3-col s4 w3-center">
-                <i class="fa fa-line-chart w3-jumbo theme-icon"></i>
-                <p class="w3-xlarge">+ Produtividade</p>
-            </div>
-            <div class="w3-col s4 w3-center">
-                <i class="fa fa-money w3-jumbo theme-icon"></i>
-                <p class="w3-xlarge">- Custos</p>
-            </div>
-            <div class="w3-col s4 w3-center">
-                <i class="fa fa-globe w3-jumbo theme-icon"></i>
-                <p class="w3-xlarge">Sustentabilidade</p>
-            </div>
-        </div>
+    
+    <!-- Links de navegação -->
+    <div class="w3-right w3-hide-small">
+      <a href="#solucoes" class="w3-bar-item w3-button">SOLUÇÕES</a>
+      <a href="#telhados" class="w3-bar-item w3-button">TELHADOS VERDES</a>
+      <a href="#cortinas" class="w3-bar-item w3-button">CORTINAS VERDES</a>
+      <a href="#beneficios" class="w3-bar-item w3-button">BENEFÍCIOS</a>
     </div>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="menuButton">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="w3-center w3-black w3-padding-64">
-        <div class="w3-xlarge w3-section">
-            <i class="fa fa-facebook-official w3-hover-opacity"></i>
-            <i class="fa fa-instagram w3-hover-opacity"></i>
-            <i class="fa fa-twitter w3-hover-opacity"></i>
-            <i class="fa fa-linkedin w3-hover-opacity"></i>
-        </div>
-        <p>Agrinho 2025 - Projeto de Sustentabilidade no Agro</p>
-        <p>Desenvolvido com ♥ para um futuro mais verde</p>
-    </footer>
+<!-- Sidebar Mobile -->
+<nav class="w3-sidebar w3-bar-block w3-green w3-card w3-animate-left w3-hide-medium w3-hide-large" id="sidebar">
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-large" id="closeMenu">×</a>
+  <a href="#solucoes" class="w3-bar-item w3-button">SOLUÇÕES</a>
+  <a href="#telhados" class="w3-bar-item w3-button">TELHADOS VERDES</a>
+  <a href="#cortinas" class="w3-bar-item w3-button">CORTINAS VERDES</a>
+  <a href="#beneficios" class="w3-bar-item w3-button">BENEFÍCIOS</a>
+</nav>
 
-    <script src="script.js"></script>
+<!-- Hero Section -->
+<header class="w3-display-container w3-grayscale-min hero-bg" id="home">
+  <div class="w3-display-left w3-text-white hero-text">
+    <h1 class="w3-xxlarge w3-hide-small">AGRO SUSTENTÁVEL</h1>
+    <h1 class="w3-large w3-hide-large w3-hide-medium">AGRO SUSTENTÁVEL</h1>
+    <p class="w3-large">Redução de Gases do Efeito Estufa no Campo</p>
+    <a href="#solucoes" class="w3-button w3-white w3-padding-large w3-large w3-margin-top">SAIBA MAIS</a>
+  </div>
+</header>
+
+<!-- Soluções -->
+<div class="w3-container w3-light-grey w3-padding-64" id="solucoes">
+  <h2 class="w3-wide section-title">SOLUÇÕES VERDES PARA O AGRO</h2>
+  <p class="w3-opacity">Tecnologias que reduzem emissões e aumentam produtividade</p>
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-quarter">
+      <i class="fa fa-leaf w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Telhados Verdes</p>
+      <p>Reduzem temperatura e absorvem CO<sub>2</sub> em propriedades rurais.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-tree w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Cortinas Verdes</p>
+      <p>Protegem cultivos e diminuem uso de irrigação.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-recycle w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Agricultura Regenerativa</p>
+      <p>Recupera solos e sequestra carbono.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-sun-o w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Energia Limpa</p>
+      <p>Biogás e solar para propriedades sustentáveis.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Telhados Verdes -->
+<div class="w3-container w3-light-grey w3-padding-64" id="telhados">
+  <div class="w3-row-padding">
+    <div class="w3-col m6">
+      <h3 class="section-title">TELHADOS VERDES NO AGRO</h3>
+      <p>Telhados cobertos por vegetação podem:</p>
+      <ul class="w3-ul">
+        <li>✅ Reduzir até 30% do calor interno</li>
+        <li>✅ Absorver CO<sub>2</sub> e melhorar qualidade do ar</li>
+        <li>✅ Diminuir custos com climatização</li>
+        <li>✅ Aumentar biodiversidade local</li>
+      </ul>
+    </div>
+    <div class="w3-col m6">
+      <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae" class="w3-image w3-round-large" alt="Telhado verde em propriedade rural com vegetação exuberante" style="width:100%">
+    </div>
+  </div>
+</div>
+
+<!-- Cortinas Verdes -->
+<div class="w3-container w3-padding-64 w3-light-grey" id="cortinas">
+  <div class="w3-row-padding">
+    <div class="w3-col m6">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="w3-image w3-round-large" alt="Cortina verde de arbustos protegendo plantação de milho" style="width:100%">
+    </div>
+    <div class="w3-col m6">
+      <h3 class="section-title">CORTINAS VERDES</h3>
+      <p>Barreiras vegetais que protegem lavouras:</p>
+      <ul class="w3-ul">
+        <li>🌿 Reduzem ventos fortes que prejudicam plantações</li>
+        <li>💧 Diminuem evaporação da água</li>
+        <li>🦋 Atraem polinizadores naturais</li>
+        <li>🌎 Sequesteram carbono do ar</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Benefícios -->
+<div class="w3-container w3-green w3-padding-64" id="beneficios">
+  <h2 class="w3-center section-title">VANTAGENS PARA O AGRICULTOR</h2>
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-col s4 w3-center">
+      <i class="fa fa-line-chart w3-jumbo"></i>
+      <p class="w3-xlarge">+ Produtividade</p>
+    </div>
+    <div class="w3-col s4 w3-center">
+      <i class="fa fa-money w3-jumbo"></i>
+      <p class="w3-xlarge">- Custos</p>
+    </div>
+    <div class="w3-col s4 w3-center">
+      <i class="fa fa-globe w3-jumbo"></i>
+      <p class="w3-xlarge">Sustentabilidade</p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity" aria-hidden="true"></i>
+    <i class="fa fa-instagram w3-hover-opacity" aria-hidden="true"></i>
+    <i class="fa fa-twitter w3-hover-opacity" aria-hidden="true"></i>
+    <i class="fa fa-linkedin w3-hover-opacity" aria-hidden="true"></i>
+  </div>
+  <p>Agrinho 2025 - Projeto de Sustentabilidade no Agro</p>
+  <p>Desenvolvido com ♥ para um futuro mais verde</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
