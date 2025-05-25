@@ -1,252 +1,308 @@
-/* ========== RESET E ESTILOS GERAIS ========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: background-color 0.3s, color 0.3s;
-}
-
+/* Estilos globais - Modo Escuro como padrão */
 body, html {
-    height: 100%;
-    line-height: 1.8;
-    font-family: "Raleway", sans-serif;
-    font-size: 16px;
-    overflow-x: hidden;
+  height: 100%;
+  line-height: 1.8;
+  font-family: "Raleway", sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  transition: background 0.3s, color 0.3s;
+  font-size: 16px;
 }
 
-/* ========== TEMA ESCURO PADRÃO ========== */
-body.dark-mode {
-    background-color: #000000;
-    color: #e0e0e0;
-}
-
-.dark-mode .w3-white {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-}
-
-.dark-mode .w3-light-grey {
-    background-color: #4B0082 !important;
-}
-
-.dark-mode .w3-green {
-    background-color: #4B0082 !important;
-    color: white !important;
-}
-
-/* ========== TEMA CLARO ========== */
-body.light-mode {
-    background-color: #ffffff;
-    color: #333333;
-}
-
-.light-mode .w3-white {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-}
-
-.light-mode .w3-light-grey {
-    background-color: #f1f1f1 !important;
-}
-
-.light-mode .w3-green {
-    background-color: #4CAF50 !important;
-    color: white !important;
-}
-
-/* ========== ACESSIBILIDADE ========== */
-/* Tamanhos de fonte */
-.font-smaller { font-size: 12px !important; }
-.font-small { font-size: 14px !important; }
-.font-normal { font-size: 16px !important; }
-.font-large { font-size: 18px !important; }
-.font-larger { font-size: 20px !important; }
-.font-largest { font-size: 22px !important; }
-
-/* Alto Contraste - Funciona em ambos os temas */
-body.high-contrast {
-    background-color: #000 !important;
-    color: #FF0 !important;
-}
-
-body.high-contrast *:not(.keep-normal) {
-    background-color: #000 !important;
-    color: #FF0 !important;
-    border-color: #FF0 !important;
-}
-
-body.high-contrast a {
-    color: #0FF !important;
-    text-decoration: underline !important;
-}
-
-/* Alto Contraste no Modo Claro */
-body.light-mode.high-contrast {
-    background-color: #FFF !important;
-    color: #000 !important;
-}
-
-body.light-mode.high-contrast *:not(.keep-normal) {
-    background-color: #FFF !important;
-    color: #000 !important;
-    border-color: #000 !important;
-}
-
-body.light-mode.high-contrast a {
-    color: #00F !important;
-}
-
-/* Zoom */
-.zoomed-page {
-    transform: scale(1.1);
-    transform-origin: top left;
-    width: 100%;
-    overflow-x: hidden;
-}
-
-.double-zoomed {
-    transform: scale(1.2);
-    transform-origin: top left;
-    width: 100%;
-    overflow-x: hidden;
-}
-
-/* Destaque de links */
-.highlight-links a {
-    background-color: yellow !important;
-    color: black !important;
-    padding: 2px 4px;
-    text-decoration: underline !important;
-}
-
-/* ========== COMPONENTES ESPECÍFICOS ========== */
 /* Hero Section */
 .hero-bg {
-    background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef') center/cover no-repeat;
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
+  background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef') center/cover no-repeat;
+  min-height: 100%;
+  filter: grayscale(50%) brightness(0.6);
+  transition: filter 0.5s;
 }
 
-.keep-normal {
-    filter: none !important;
-    background-color: transparent !important;
+.hero-text {
+  padding: 0 60px;
 }
 
-.high-contrast img:not(.keep-normal) {
-    filter: contrast(120%) !important;
-    border: 2px solid currentColor !important;
+/* Cores Temáticas - Modo Escuro */
+.w3-white {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* Painel de Acessibilidade */
-.accessibility-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #0066cc;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    border: none;
-    font-size: 24px;
+.w3-light-grey {
+  background-color: #2d2d2d !important;
+  transition: background 0.3s;
 }
 
-.accessibility-panel {
-    position: fixed;
-    right: 20px;
-    bottom: 90px;
-    width: 300px;
-    max-height: 60vh;
-    overflow-y: auto;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    z-index: 1000;
-    padding: 15px;
-    color: #333;
-    transform: translateX(120%);
-    transition: transform 0.3s;
+.w3-green {
+  background-color: #4a1d96 !important;
+  color: white !important;
+  transition: background 0.3s;
 }
 
-.accessibility-panel.active {
-    transform: translateX(0);
-}
-
-.option-group {
-    margin-bottom: 15px;
-}
-
-.option-group h4 {
-    margin-bottom: 8px;
-    color: #0066cc;
+.w3-card {
+  background-color: #1e1e1e !important;
+  transition: background 0.3s;
 }
 
 /* Botão de Tema */
 .theme-btn-container {
-    position: absolute;
-    left: 200px;
-    top: 0;
+  position: absolute;
+  left: 200px;
+  top: 0;
 }
 
 .theme-btn {
-    font-size: 1.5em;
-    background: none !important;
-    padding: 8px 16px !important;
-    cursor: pointer;
-    border: none;
+  font-size: 1.5em;
+  background: none !important;
+  padding: 8px 16px !important;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: transform 0.2s;
 }
 
-/* ========== RESPONSIVIDADE ========== */
+.theme-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Botão de Acessibilidade */
+.accessibility-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: #0066cc;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: all 0.3s;
+  border: none;
+}
+
+.accessibility-btn:hover {
+  transform: scale(1.1);
+  background-color: #0052a3;
+}
+
+.libras-icon {
+  font-size: 30px;
+}
+
+/* Painel de Acessibilidade */
+.accessibility-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 90px;
+  width: 300px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  padding: 15px;
+  color: #333;
+  transform: translateX(120%);
+  transition: transform 0.3s;
+}
+
+.accessibility-panel.active {
+  transform: translateX(0);
+}
+
+.accessibility-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+.close-panel {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.option-group {
+  margin-bottom: 15px;
+}
+
+.option-group h4 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #0066cc;
+}
+
+/* Classes para tamanho de fonte */
+.font-smaller {
+  font-size: 0.8em !important;
+}
+
+.font-small {
+  font-size: 0.9em !important;
+}
+
+.font-normal {
+  font-size: 1em !important;
+}
+
+.font-large {
+  font-size: 1.2em !important;
+}
+
+.font-larger {
+  font-size: 1.4em !important;
+}
+
+.font-largest {
+  font-size: 1.6em !important;
+}
+
+/* Classes para acessibilidade */
+.high-contrast {
+  background-color: black !important;
+  color: yellow !important;
+}
+
+.high-contrast a {
+  color: cyan !important;
+}
+
+.high-contrast .w3-green {
+  background-color: yellow !important;
+  color: black !important;
+}
+
+.highlight-links a {
+  background-color: yellow;
+  color: black !important;
+  padding: 2px 4px;
+  text-decoration: underline !important;
+}
+
+.zoomed-page {
+  transform: scale(1.1);
+  transform-origin: top left;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.double-zoomed {
+  transform: scale(1.2);
+  transform-origin: top left;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Texto em fundos escuros */
+.w3-light-grey,
+.w3-light-grey .section-title,
+.w3-light-grey h2,
+.w3-light-grey h3,
+.w3-light-grey p,
+.w3-light-grey li {
+  color: white !important;
+}
+
+/* Modo Claro */
+body.light-mode {
+  background-color: white;
+  color: black;
+}
+
+.light-mode .w3-white {
+  background-color: white !important;
+  color: black !important;
+}
+
+.light-mode .w3-light-grey {
+  background-color: #f1f1f1 !important;
+}
+
+.light-mode .w3-light-grey .section-title,
+.light-mode .w3-light-grey h2,
+.light-mode .w3-light-grey h3,
+.light-mode .w3-light-grey p,
+.light-mode .w3-light-grey li {
+  color: black !important;
+}
+
+.light-mode .w3-green {
+  background-color: #4CAF50 !important;
+  color: white !important;
+}
+
+.light-mode .hero-bg {
+  filter: grayscale(30%);
+}
+
+.light-mode .accessibility-panel {
+  background-color: #f9f9f9;
+}
+
+/* Texto claro em fundos escuros */
+.w3-green,
+.w3-black {
+  color: white !important;
+}
+
+.w3-green .fa,
+.w3-black .fa {
+  color: white !important;
+}
+
+/* Responsividade */
 @media (max-width: 600px) {
-    .hero-text {
-        padding: 0 20px !important;
-    }
-    
-    .theme-btn-container {
-        left: 150px;
-    }
-    
-    .w3-quarter, .w3-col {
-        width: 100% !important;
-    }
-    
-    .accessibility-panel {
-        width: 280px;
-        right: 10px;
-        bottom: 80px;
-    }
+  .hero-text {
+    padding: 0 20px;
+  }
+  
+  .theme-btn-container {
+    left: 150px;
+  }
+  
+  .w3-quarter, .w3-col {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .accessibility-panel {
+    width: 280px;
+    right: 10px;
+    bottom: 80px;
+  }
 }
 
-/* Correção para imagens em alto contraste */
-.high-contrast .hero-bg {
-    filter: none !important;
-    background-color: transparent !important;
+/* Efeitos de imagem */
+.w3-image {
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Garante que os ícones mudem de cor corretamente */
-.dark-mode .theme-icon,
-.dark-mode .fa {
-    color: #ffffff !important;
+.w3-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.light-mode .theme-icon,
-.light-mode .fa {
-    color: #333333 !important;
+/* Melhorias de acessibilidade */
+[aria-hidden="true"] {
+  pointer-events: none;
 }
 
-.high-contrast .theme-icon,
-.high-contrast .fa {
-    color: #FF0 !important;
-}
-
-.light-mode.high-contrast .theme-icon,
-.light-mode.high-contrast .fa {
-    color: #000 !important;
+:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
 }
