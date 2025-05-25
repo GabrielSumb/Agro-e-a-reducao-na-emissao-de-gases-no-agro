@@ -3,10 +3,12 @@ body, html {
     height: 100%;
     line-height: 1.8;
     font-family: "Raleway", sans-serif;
-    background-color: #121212; /* Modo escuro padrão */
+    background-color: #121212;
     color: #e0e0e0;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     font-size: 16px;
+    margin: 0;
+    padding: 0;
 }
 
 /* ========== ACESSIBILIDADE ========== */
@@ -19,13 +21,56 @@ body, html {
 .font-largest { font-size: 1.6em !important; }
 
 /* Alto Contraste */
-.high-contrast {
+.high-contrast,
+.high-contrast .w3-white,
+.high-contrast .w3-light-grey,
+.high-contrast .w3-green,
+.high-contrast .w3-card {
     background-color: #000 !important;
     color: #FF0 !important;
+    border-color: #FF0 !important;
 }
-.high-contrast a {
+
+.high-contrast a,
+.high-contrast .w3-button {
     color: #0FF !important;
     text-decoration: underline !important;
+}
+
+/* Modo Claro */
+.light-mode {
+    background-color: white;
+    color: black;
+}
+
+.light-mode .w3-white {
+    background-color: white !important;
+    color: black !important;
+}
+
+.light-mode .w3-light-grey {
+    background-color: #f1f1f1 !important;
+}
+
+.light-mode .w3-green {
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+
+/* Alto Contraste no Modo Claro */
+.light-mode.high-contrast {
+    background-color: #FFF !important;
+    color: #000 !important;
+}
+
+.light-mode.high-contrast *:not(.keep-normal) {
+    background-color: #FFF !important;
+    color: #000 !important;
+    border-color: #000 !important;
+}
+
+.light-mode.high-contrast a {
+    color: #00F !important;
 }
 
 /* Zoom */
@@ -35,6 +80,7 @@ body, html {
     width: 100%;
     overflow-x: hidden;
 }
+
 .double-zoomed {
     transform: scale(1.2);
     transform-origin: top left;
@@ -50,48 +96,10 @@ body, html {
     text-decoration: underline !important;
 }
 
-/* ========== ALTO CONTRASTE ========== */
-/* Modo Escuro - Fundo Preto/Texto Amarelo */
-.dark-mode.high-contrast,
-.dark-mode.high-contrast .w3-white,
-.dark-mode.high-contrast .w3-light-grey,
-.dark-mode.high-contrast .w3-green,
-.dark-mode.high-contrast .w3-card {
-    background-color: #000000 !important;
-    color: #FFFF00 !important;
-    border-color: #FFFF00 !important;
-}
-
-.dark-mode.high-contrast a,
-.dark-mode.high-contrast .w3-button {
-    color: #00FFFF !important;
-    text-decoration: underline !important;
-}
-
-/* Modo Claro - Fundo Branco/Texto Preto */
-.light-mode.high-contrast,
-.light-mode.high-contrast .w3-white,
-.light-mode.high-contrast .w3-light-grey,
-.light-mode.high-contrast .w3-green,
-.light-mode.high-contrast .w3-card {
-    background-color: #FFFFFF !important;
-    color: #000000 !important;
-    border-color: #000000 !important;
-}
-
-.light-mode.high-contrast a,
-.light-mode.high-contrast .w3-button {
-    color: #0000FF !important;
-    text-decoration: underline !important;
-}
-
-/* Exceções para imagens */
-.high-contrast .keep-normal,
-.high-contrast .hero-bg,
-.high-contrast .hero-text {
-    background-color: transparent !important;
-    color: inherit !important;
+/* Imagens */
+.keep-normal {
     filter: none !important;
+    background-color: transparent !important;
 }
 
 .high-contrast img:not(.keep-normal) {
@@ -99,7 +107,6 @@ body, html {
     border: 1px solid currentColor !important;
 }
 
-/* ========== COMPONENTES ========== */
 /* Hero Section */
 .hero-bg {
     background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef') center/cover no-repeat;
@@ -112,13 +119,7 @@ body, html {
     padding: 0 60px;
 }
 
-/* Botões */
-.w3-button {
-    transition: all 0.3s;
-    margin: 4px;
-}
-
-/* Acessibilidade */
+/* Botão de Acessibilidade */
 .accessibility-btn {
     position: fixed;
     right: 20px;
@@ -164,31 +165,55 @@ body, html {
     transform: translateX(0);
 }
 
-/* ========== TEMA CLARO ========== */
-.light-mode {
-    background-color: white;
-    color: black;
+.accessibility-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
 }
 
-.light-mode .w3-white {
-    background-color: white !important;
-    color: black !important;
+.close-panel {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
 }
 
-.light-mode .w3-light-grey {
-    background-color: #f1f1f1 !important;
+.option-group {
+    margin-bottom: 15px;
 }
 
-.light-mode .w3-green {
-    background-color: #4CAF50 !important;
-    color: white !important;
+.option-group h4 {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #0066cc;
 }
 
-.light-mode .hero-bg {
-    filter: grayscale(30%);
+/* Botão de Tema */
+.theme-btn-container {
+    position: absolute;
+    left: 200px;
+    top: 0;
 }
 
-/* ========== RESPONSIVIDADE ========== */
+.theme-btn {
+    font-size: 1.5em;
+    background: none !important;
+    padding: 8px 16px !important;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: transform 0.2s;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Responsividade */
 @media (max-width: 600px) {
     .hero-text {
         padding: 0 20px;
