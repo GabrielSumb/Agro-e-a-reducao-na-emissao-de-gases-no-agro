@@ -194,20 +194,6 @@ body, html {
   text-decoration: underline !important;
 }
 
-.zoomed-page {
-  transform: scale(1.1);
-  transform-origin: top left;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.double-zoomed {
-  transform: scale(1.2);
-  transform-origin: top left;
-  width: 100%;
-  overflow-x: hidden;
-}
-
 /* Texto em fundos escuros */
 .w3-light-grey,
 .w3-light-grey .section-title,
